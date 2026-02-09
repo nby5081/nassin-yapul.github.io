@@ -1,0 +1,259 @@
+/*
+====================================================
+Name: Nassin Yapul
+Student ID: nby5081
+Course: IST / Web Development
+Assignment: Assignment 2 – CSS Portfolio Enhancement
+Description: Primary stylesheet for portfolio layout,
+             typography, responsiveness, and animations.
+====================================================
+
+TABLE OF CONTENTS
+1. CSS Reset & Box Model
+2. CSS Custom Properties
+3. Typography
+4. Layout (Grid & Flexbox)
+5. Header & Navigation
+6. Sections & Cards
+7. Tables
+8. Forms
+9. Visual Effects
+10. Animations
+11. Responsive Design
+====================================================
+*/
+
+/* ===== 1. Reset & Box Model ===== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== 2. CSS Custom Properties ===== */
+:root {
+    /* Colors */
+    --color-primary: hsl(210, 70%, 45%);
+    --color-secondary: hsl(190, 60%, 40%);
+    --color-accent: hsl(40, 90%, 55%);
+    --color-bg: #f9fafb;
+    --color-text: #1f2933;
+    --color-muted: #6b7280;
+    --color-success: #16a34a;
+    --color-danger: #dc2626;
+
+    /* Typography */
+    --font-main: 'Segoe UI', system-ui, sans-serif;
+    --font-mono: 'Courier New', monospace;
+
+    --fs-sm: 0.875rem;
+    --fs-base: 1rem;
+    --fs-lg: 1.25rem;
+    --fs-xl: 2rem;
+
+    /* Spacing */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 2rem;
+    --space-lg: 4rem;
+
+    /* Radius & Shadow */
+    --radius-sm: 6px;
+    --radius-lg: 16px;
+    --shadow-md: 0 10px 25px rgba(0,0,0,0.1);
+
+    /* Transitions */
+    --transition-fast: 0.2s ease-in-out;
+}
+
+/* ===== 3. Typography ===== */
+body {
+    font-family: var(--font-main);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    margin-bottom: var(--space-sm);
+}
+
+code {
+    font-family: var(--font-mono);
+    background: #eef2ff;
+    padding: 0.2em 0.4em;
+    border-radius: var(--radius-sm);
+}
+
+blockquote {
+    border-left: 4px solid var(--color-accent);
+    padding-left: var(--space-sm);
+    color: var(--color-muted);
+    font-style: italic;
+}
+
+/* ===== 4. Layout (Grid & Flexbox) ===== */
+.layout-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    padding: var(--space-md);
+}
+
+/* ===== 5. Header & Navigation ===== */
+.site-header {
+    padding: var(--space-lg);
+    text-align: center;
+}
+
+.site-header img {
+    border-radius: 50%;
+    box-shadow: var(--shadow-md);
+}
+
+.site-nav ul {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+    list-style: none;
+    padding: var(--space-sm);
+}
+
+.site-nav a {
+    text-decoration: none;
+    color: var(--color-primary);
+    font-weight: bold;
+}
+
+.site-nav a:hover,
+.site-nav a:focus {
+    color: var(--color-accent);
+}
+
+/* Attribute selector example */
+a[target="_blank"]::after {
+    content: " ↗";
+}
+
+/* ===== 6. Sections & Cards ===== */
+.section {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.card {
+    background: white;
+    padding: var(--space-md);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    margin-bottom: var(--space-md);
+    transition: transform var(--transition-fast);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* ===== 7. Tables ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: var(--space-sm);
+}
+
+th, td {
+    padding: var(--space-sm);
+    text-align: left;
+}
+
+thead {
+    background: var(--color-primary);
+    color: white;
+}
+
+tbody tr:nth-child(even) {
+    background: #f1f5f9;
+}
+
+tbody tr:hover {
+    background: #e0f2fe;
+}
+
+/* ===== 8. Forms ===== */
+form {
+    max-width: 600px;
+}
+
+input, textarea, button {
+    width: 100%;
+    padding: var(--space-sm);
+    margin-bottom: var(--space-sm);
+    border-radius: var(--radius-sm);
+    border: 1px solid #cbd5e1;
+}
+
+input:focus,
+textarea:focus {
+    outline: 2px solid var(--color-primary);
+}
+
+input:invalid {
+    border-color: var(--color-danger);
+}
+
+button {
+    background: var(--color-primary);
+    color: white;
+    cursor: pointer;
+    transition: background var(--transition-fast);
+}
+
+button:hover {
+    background: var(--color-secondary);
+}
+
+/* ===== 9. Visual Effects ===== */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+figure img:hover {
+    filter: brightness(1.05);
+}
+
+/* ===== 10. Animations ===== */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.card {
+    animation: fadeIn 0.8s ease-in;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none;
+        transition: none;
+    }
+}
+
+/* ===== 11. Responsive Design ===== */
+@media (min-width: 768px) {
+    .layout-grid {
+        grid-template-columns: 3fr 1fr;
+    }
+
+    .sidebar {
+        align-self: start;
+    }
+}
+
+@media (min-width: 1024px) {
+    body {
+        font-size: 1.1rem;
+    }
+}
